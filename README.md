@@ -14,4 +14,4 @@ alias kshell='/usr/local/bin/kubectl run -it --rm --image=ghcr.io/willnewby/kshe
 ```
 
 ## Building
-`tast` to build + push a new image. Uses https://taskfile.dev
+`task` to build + push a new image. Uses https://taskfile.dev
