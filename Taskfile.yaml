@@ -9,12 +9,7 @@ vars:
 tasks:
   default:
     cmds:
-    - task: build
-    - task: push
-  build:
+    - task: build-push
+  build-push:
     cmds:
-      - "docker build . -t ghcr.io/willnewby/kshell:{{.DATE}}-{{.GITSHA}} -t ghcr.io/willnewby/kshell:latest" 
-  push:
-    cmds:
-      - "docker push ghcr.io/willnewby/kshell:{{.DATE}}-{{.GITSHA}}"
-      - "docker push ghcr.io/willnewby/kshell:latest"
+      - "docker buildx build --platform linux/amd64,linux/arm64 --push -t ghcr.io/willnewby/kshell:{{.DATE}}-{{.GITSHA}} -t ghcr.io/willnewby/kshell:latest ."
