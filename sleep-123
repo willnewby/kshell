@@ -1,0 +1,3 @@
+#!/bin/bash
+
+while :; do echo 'Waiting for troubleshooting'; sleep 120 ; done

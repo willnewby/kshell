@@ -15,4 +15,6 @@ RUN apt-get update && apt-get install -y \
     dumb-init \
     && rm -rf /var/lib/apt/lists/*
 
-CMD [ "/usr/bin/dumb-init", "/bin/sh" ]
+COPY sleep-123 /sleep-123
+
+CMD [ "/usr/bin/dumb-init", "bash", "/sleep-123" ]
