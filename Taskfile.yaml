@@ -13,9 +13,8 @@ tasks:
     - task: push
   build:
     cmds:
-      - "docker build . -t ghcr.io/willnewby/kshell:{{.DATE}}-{{.GITSHA}}"
+      - "docker build . -t ghcr.io/willnewby/kshell:{{.DATE}}-{{.GITSHA}} -t ghcr.io/willnewby/kshell:latest" 
   push:
     cmds:
       - "docker push ghcr.io/willnewby/kshell:{{.DATE}}-{{.GITSHA}}"
-
-  
+      - "docker push ghcr.io/willnewby/kshell:latest"
