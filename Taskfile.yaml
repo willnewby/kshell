@@ -1,0 +1,21 @@
+# https://taskfile.dev
+
+version: '3'
+
+vars:
+  DATE: $(date -u -j -f %s $(git show -s --format=%ct) +%Y%m%d%H%M)
+  GITSHA: $(git rev-parse --short HEAD)
+
+tasks:
+  default:
+    cmds:
+    - task: build
+    - task: push
+  build:
+    cmds:
+      - "docker build . -t ghcr.io/willnewby/kshell:{{.DATE}}-{{.GITSHA}}"
+  push:
+    cmds:
+      - "docker push ghcr.io/willnewby/kshell:{{.DATE}}-{{.GITSHA}}"
+
+  

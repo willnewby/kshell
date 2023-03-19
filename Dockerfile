@@ -1,3 +1,3 @@
-FROM golang:1.11-alpine
-RUN apk update && apk add drill curl git
-RUN go get -u github.com/rakyll/hey
+FROM golang:1.20-alpine
+RUN apk update && apk add drill curl git openssl
+RUN go install github.com/rakyll/hey@latest
