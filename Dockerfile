@@ -7,12 +7,13 @@ ARG VERSION
 
 RUN apt-get update && apt-get install -y \
     curl \
+    dumb-init \
+    dnsutils \
     git \
     jq \
+    openssl \
     unzip \
     wget \
-    openssl \
-    dumb-init \
     && rm -rf /var/lib/apt/lists/*
 
 COPY sleep-123 /sleep-123
