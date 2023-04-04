@@ -18,5 +18,5 @@ RUN apt-get update && apt-get install -y \
 
 COPY sleep-123 /sleep-123
 
-#ENTRYPOINT ["/usr/bin/dumb-init", "--"]
+ENTRYPOINT ["/usr/bin/dumb-init", "--"]
 CMD ["bash", "/sleep-123"]
