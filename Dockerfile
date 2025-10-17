@@ -17,6 +17,7 @@ RUN apt-get update && apt-get install -y \
     wget \
     iputils-ping \
     hey \
+    net-tools \
     && rm -rf /var/lib/apt/lists/*
 
 COPY sleep-123 /sleep-123
