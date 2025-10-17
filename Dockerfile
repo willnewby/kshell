@@ -1,4 +1,4 @@
-FROM --platform=$BUILDPLATFORM ubuntu:22.04
+FROM --platform=$BUILDPLATFORM ubuntu:24.04
 LABEL org.opencontainers.image.source=https://github.com/willnewby/kshell
 
 ARG TARGETPLATFORM
