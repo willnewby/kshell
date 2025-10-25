@@ -22,7 +22,7 @@ spec:
           exec:
             command:
             - /usr/bin/healthz.sh
-          initialDelaySeconds: 15
+          initialDelaySeconds: 5
           periodSeconds: 30
           timeoutSeconds: 15
           failureThreshold: 3
