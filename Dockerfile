@@ -21,6 +21,8 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 COPY sleep-123 /sleep-123
+COPY healthz.sh /usr/bin/healthz.sh
+RUN chmod +x /usr/bin/healthz.sh
 
 ENTRYPOINT ["/usr/bin/dumb-init", "--"]
 CMD ["bash", "/sleep-123"]

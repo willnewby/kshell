@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: testds
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      name: testds
+  template:
+    metadata:
+      labels:
+        name: testds
+    spec:
+      containers:
+      - name: testds
+        image: ghcr.io/willnewby/kshell
+        command:
+        - ping
+        - '1.1.1.1'
+        livenessProbe:
+          exec:
+            command:
+            - /usr/bin/healthz.sh
+          initialDelaySeconds: 15
+          periodSeconds: 30
+          timeoutSeconds: 15
+          failureThreshold: 3
+        readinessProbe:
+          exec:
+            command:
+            - /usr/bin/healthz.sh
+          initialDelaySeconds: 10
+          periodSeconds: 20
+          timeoutSeconds: 15
+          failureThreshold: 3
+        resources:
+          limits:
+            memory: 200Mi
+          requests:
+            cpu: 100m
+            memory: 200Mi
+      # it may be desirable to set a high priority class to ensure that a DaemonSet Pod
+      # preempts running Pods
+      # priorityClassName: important
+      terminationGracePeriodSeconds: 30
