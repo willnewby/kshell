@@ -14,4 +14,4 @@ alias kshell="kubectl run -it --attach --rm  atlas --restart=Never --image=ghcr.
 ```
 
 ## Building
-`task` to build + push a new image. Uses https://taskfile.dev
+Built and released using GitHub Actions, only commits on `main` branch. 
