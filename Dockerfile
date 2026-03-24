@@ -1,5 +1,5 @@
 FROM ghcr.io/astral-sh/uv:latest AS uv
-FROM --platform=$BUILDPLATFORM ubuntu:24.04
+FROM ubuntu:24.04
 LABEL org.opencontainers.image.source=https://github.com/willnewby/kshell
 
 ARG TARGETPLATFORM
