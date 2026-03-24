@@ -1,3 +1,4 @@
+FROM ghcr.io/astral-sh/uv:latest AS uv
 FROM --platform=$BUILDPLATFORM ubuntu:24.04
 LABEL org.opencontainers.image.source=https://github.com/willnewby/kshell
 
@@ -20,6 +21,7 @@ RUN apt-get update && apt-get install -y \
     net-tools \
     && rm -rf /var/lib/apt/lists/*
 
+COPY --from=uv /uv /uvx /usr/local/bin/
 COPY sleep-123 /sleep-123
 COPY healthz.sh /usr/bin/healthz.sh
 RUN chmod +x /usr/bin/healthz.sh
