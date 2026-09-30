@@ -41,12 +41,22 @@ Users typically alias this command as `kshell` in their shell profile.
 
 ## Image Architecture
 
-**Base Image:** Ubuntu 22.04 with multi-platform support
+**Base Image:** Ubuntu 24.04 with multi-platform support
 
 **Installed Tools:**
 - Networking: curl, wget, dnsutils, iputils-ping, net-tools, hey (HTTP load generator)
 - Development: git, emacs
-- Utilities: jq, openssl, unzip, dumb-init
+- Dev environment: Node.js v24.21.0, pi (`@earendil-works/pi-coding-agent`) 0.99.1, kubectl v1.37.1, helm v4.3.0, gh v2.101.0, tmux, sudo, less, bash-completion
+- Utilities: jq, openssl, unzip, xz-utils, dumb-init, uv
+
+Version pins live in the `Dockerfile` as `ARG`s (`NODE_VERSION`, `PI_VERSION`,
+`KUBECTL_VERSION`, `HELM_VERSION`, `GH_VERSION`). Node.js has no armv7 binary
+for v24, so the Node + pi layer is skipped when `TARGETARCH=arm` (armv7);
+kubectl/helm/gh are installed per-arch and the armv7 build still succeeds.
+
+**User:** A non-root `dev` user (uid/gid 1000, `HOME=/home/dev`, passwordless
+sudo, `/bin/bash`) is created for long-lived dev workloads. The default image
+user remains `root` for backward compatibility with the ephemeral `kshell` usage.
 
 **Entrypoint:** Uses dumb-init as PID 1 for proper signal handling
 
